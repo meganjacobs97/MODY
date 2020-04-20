@@ -1,0 +1,1 @@
+//frontend javascript to make ajax calls 
