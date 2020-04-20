@@ -1,0 +1,13 @@
+.nav-bar, .submit-btn{
+    background-color: rgb(48, 129, 48);
+}
+
+.nav-row{
+    margin-bottom: 10vh;
+}
+
+.btn-row{
+    display:flex;
+    justify-content: center;
+}
+
