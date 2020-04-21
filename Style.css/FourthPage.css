@@ -1,0 +1,17 @@
+body {
+    background-color: yellowgreen;
+}
+
+h4 {
+    text-align: center;
+    color: white;
+}
+
+th {
+    text-shadow: yellow;
+    color: white;
+}
+
+td {
+    color: white;
+}
