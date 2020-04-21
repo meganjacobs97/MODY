@@ -2,7 +2,10 @@ module.exports = function(sequelize, DataTypes) {
     const TournamentBracket = sequelize.define('TournamentBracket', {
        name: DataTypes.STRING,
        current_round: DataTypes.INTEGER,
-       is_complete: DataTypes.BOOLEAN,
+       is_complete: {
+           type: DataTypes.BOOLEAN,
+           defaultValue: false
+       },
        winner: DataTypes.STRING
     });
 

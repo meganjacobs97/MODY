@@ -24,13 +24,13 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-// const productApiRoutes = require("./controllers/productsController");
-// const reviewApiRoutes = require("./controllers/reviewsController");
+const bracketApiRoutes = require("./controllers/bracketController");
+const userApiRoutes = require("./controllers/userController");
 const htmlRoutes = require("./controllers/htmlController");
 
 app.use(htmlRoutes);
 
-// app.use("/api/products",productApiRoutes);
+app.use("/api/TournamentBracket",bracketApiRoutes);
 // app.use("/api/reviews",reviewApiRoutes);
 
 db.sequelize.sync({ force: true }).then(function() {
