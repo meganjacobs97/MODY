@@ -1,0 +1,37 @@
+.row{
+    margin: 0;
+}
+
+.pairing{
+    border: 2px solid black;
+    border-radius:5px;
+    margin: 3vh;
+}
+
+.rd2{
+    height:100%;
+
+}
+
+.first{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.second{
+    text-align: right;
+    border-left: 1px solid black;
+}
+
+.round{
+    margin: 0px 20px
+}
+
+@media only screen and (min-width: 600px) {
+ .second{
+     text-align: left;
+     border-left: 0px;
+     border-top: 2px solid black;
+ }
+}
