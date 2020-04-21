@@ -3,13 +3,32 @@ var express = require('express');
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
+require("dotenv").config(); 
 
 // Requiring our models for syncing
 var db = require('./models');
+const session = require("express-session"); 
+const SequelizeStore = require("connect-session-sequelize")(session.Store); 
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//to remember user session
+app.use(session({
+    //CHANGE THIS TO A RANDOM STRING DURING DEVELOPMENT
+    secret: process.env.SESSION_SECRET,
+    store: new SequelizeStore({
+        db: db.sequelize
+    }),
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        //2 hours 
+        maxAge: 7200000
+    }
+}))
+
 
 // Static directory
 app.use(express.static('public'));
@@ -24,11 +43,12 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-const bracketApiRoutes = require("./controllers/bracketController");
-const userApiRoutes = require("./controllers/userController");
+const bracketRoutes = require("./controllers/bracketController");
+const userRoutes = require("./controllers/userController");
 const htmlRoutes = require("./controllers/htmlController");
 
 app.use(htmlRoutes);
+app.use(userRoutes); 
 
 app.use("/api/TournamentBracket",bracketApiRoutes);
 // app.use("/api/reviews",reviewApiRoutes);

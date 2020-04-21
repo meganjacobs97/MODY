@@ -9,4 +9,13 @@ router.get("/",(req,res)=>{
    
 })
 
+//this route is protected - can only get there if logged in, otherwise redirected 
+// router.get("/secret",function(req,res) {
+//     if(req.session.user) {
+//         res.render("secret",req.session.user) 
+//     } else {
+//         res.redirect("/login"); 
+//     }
+// }); 
+
 module.exports = router;
