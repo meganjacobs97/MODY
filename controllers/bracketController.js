@@ -4,18 +4,38 @@ const db = require("../models")
 
 
 //create new bracket
+// route: /api/tournamentbracket/new
 router.post("/new",(req,res)=> {
+    //create the database 
     db.TournamentBracket.create({
-        //TODO
-        // user_name:req.body.user_name,
-        // password:req.body.password,
-        // email: req.body.email
+        name: req.body.name,
+        current_round: 1, 
+        UserId: req.session.user.id, 
+        is_complete: false,
+        winner: null 
+
     }).then(newDbTournamentBracket=>{
         res.status(200).json(newDbTournamentBracket);
+        const tournamentID = newDbTournamentBracket.id;
+        //array of options passed from the front end 
+        const options = req.body.options; 
+        //number of users options - for now, hardcoded as 8 
+         
+        //create each option 
+        db.Option.create(options,
+            {
+                TournamentId: tournamentID            
+            }).then(function (newDbOption) {
+            res.json(newDbOption); 
+        }); 
+    }).catch(function(err) {
+        console.log(err); 
+        res.sendStatus(200); 
     })
 }); 
 
 //get a specific bracket by ID
+// route: /api/tournamentbracket/:id
 router.route("/:id").get((req,res)=>{
     db.TournamentBracket.findOne({
         where:{
@@ -28,6 +48,7 @@ router.route("/:id").get((req,res)=>{
     })
 });
 
+// route: /api/tournamentbracket/:id
 //update a bracket 
 router.route("/:id").put((req,res)=>{
     db.TournamentBracket.update({
@@ -43,6 +64,7 @@ router.route("/:id").put((req,res)=>{
     })
 });
 
+// route: /api/tournamentbracket/:id
 //delete a bracket 
 router.route("/:id").delete((req,res)=>{
     db.TournamentBracket.destroy({
