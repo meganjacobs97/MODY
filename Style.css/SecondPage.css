@@ -1,0 +1,30 @@
+body {
+    background-color: yellowgreen;
+}
+
+.nav-wrapper {
+    background-color: green;
+    -ms-flex-item-align: auto;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11mm;
+}
+
+.card-content {
+    text-align: left;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 6mm;
+}
+
+h6 {
+    text-shadow: cornsilk;
+    color: white;
+    font-size: 6mm;
+}
+
+.button {
+    color: white;
+    background-color: green;
+    align-items: center;
+    height: 40px;
+}
