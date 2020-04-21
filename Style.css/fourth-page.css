@@ -13,6 +13,17 @@
 
 }
 
+.rd-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.end-btn{
+    margin: 15px 0px 0px 15px;
+
+}
+
 .first{
     text-align: left;
     display: flex;
@@ -22,10 +33,13 @@
 .second{
     text-align: right;
     border-left: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
 }
 
 .round{
-    margin: 0px 20px
+    margin: 0px 20px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -33,5 +47,7 @@
      text-align: left;
      border-left: 0px;
      border-top: 2px solid black;
+     display: flex;
+     flex-direction: row;
  }
 }
