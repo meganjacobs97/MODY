@@ -2,19 +2,27 @@ const bcrypt = require("bcrypt");
 
 module.exports = function(sequelize, DataTypes) {
     const User = sequelize.define('User', {
-       username: {
-           type: DataTypes.STRING,
-           unique: true,
-           allowNull: false
-       },
-       password: {
-           type: DataTypes.STRING,
-           allowNull: false,
-           validate: {
-               len: [8]
-           }
-       },
-       email: DataTypes. STRING
+        username: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [8]
+            }
+        },
+        options_voted_for: {
+            type: DataTypes.INTEGER,
+            get() {
+                return this.getDataValue('options_voted_for').split(';')
+            },
+            set(val) {
+                this.setDataValue('options_voted_for',val.join(';'));
+            }
+        }
     });
 
     //encrypt password

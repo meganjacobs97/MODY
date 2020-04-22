@@ -10,7 +10,6 @@ router.post("/signup",(req,res)=> {
     db.User.create({
         username:req.body.username,
         password:req.body.password,
-        email: req.body.email
     }).then(newDbUser=>{
         //create a session with the new user 
         req.session.user = {
@@ -31,13 +30,14 @@ router.post("/login",function(req,res) {
             username:req.body.username
         }
     }).then(dbUser=>{
-        if(bcrypt.comapreSync(req.body.password,dbUser.password)) {
+        if(bcrypt.compareSync(req.body.password,dbUser.password)) {
             req.session.user = {
                 username:dbUser.username,
                 id: dbUser.id
             }; 
             //TODO - this should redirect to the profile page 
-            res.redirect("/profile")
+            //res.redirect("/profile")
+            res.send("logged in")
         }
         else {
             res.send("not logged in")

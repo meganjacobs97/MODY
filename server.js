@@ -24,7 +24,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        //2 hours 
+        //2 hours
         maxAge: 7200000
     }
 }))
@@ -33,7 +33,7 @@ app.use(session({
 // Static directory
 app.use(express.static('public'));
 
-var exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 
 const Handlebars = require('handlebars')
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
@@ -50,7 +50,7 @@ const htmlRoutes = require("./controllers/htmlController");
 app.use(htmlRoutes);
 app.use(userRoutes); 
 
-app.use("/api/TournamentBracket",bracketApiRoutes);
+app.use("/api/TournamentBracket",bracketRoutes);
 // app.use("/api/reviews",reviewApiRoutes);
 
 db.sequelize.sync({ force: true }).then(function() {

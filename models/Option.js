@@ -3,7 +3,7 @@
 //belongs to tournamentbracket and round 
 module.exports = function(sequelize, DataTypes) {
     const Option = sequelize.define('Option', {
-       name: DataTypes.STRING
+        name: DataTypes.STRING
     });
 
     Option.associate = function(models) {
@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
         });
 
         //each option also belongs to a round
-        Option.belongsTo(models.Round, {
-            foreignKey: {
-              allowNull: false
-            }
-        });
+        // Option.belongsTo(models.MatchUp, {
+        //     foreignKey: {
+        //       allowNull: false
+        //     }
+        // });
     };
 
     return Option;
