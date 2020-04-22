@@ -1,9 +1,10 @@
 //frontend javascript to make ajax calls 
+$('.message a').click(function() {
+    $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+});
 
-// console.log("hi")
 
-$(function(){
-    $("#submit").on("click", function(event){
-        console.log(event)
-    })
-})
+var loadFile = function(event) {
+    var image = document.getElementById('output');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
