@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="Style.css/SecondPage.css">
-    <title>Document</title>
-</head>
-
-<body>
-    <div class="navbar-fixed">
+<div class="navbar-fixed">
         <nav class="nav-extended nav-bar">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo right">MODY</a>
                 <ul id="nav-mobile" class="left">
-                    <!-- <li><a href="sass.html" class="active">Profile</a></li> -->
+                   
                     <li><a href="badges.html">ALL USERS</a></li>
                 </ul>
             </div>
@@ -33,8 +21,8 @@
                         <p><img id="output" width="200" /></p>
 
                         <div class="card-content">
-                            <p>Name:</p>
-
+                            {{<p>Name:</p>}}
+                            
                         </div>
                     </div>
                     <div class="col s6">
@@ -54,14 +42,6 @@
             </div>
         </div>
     </div>
-    <script>
-        var loadFile = function(event) {
-            var image = document.getElementById('output');
-            image.src = URL.createObjectURL(event.target.files[0]);
-        };
-    </script>
-    <script src="./public/js/frontend.js"></script>
+    
+    <script src="./Index.js/SecondPage.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-
-</html>
