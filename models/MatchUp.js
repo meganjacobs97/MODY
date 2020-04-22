@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         });
         //each matchup has multiple options (2)
-        MatchUp.hasMany(models.Option); 
+        // MatchUp.hasMany(models.Option); 
     };
 
 

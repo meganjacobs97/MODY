@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
         });
 
         //each option also belongs to a round
-        Option.belongsTo(models.MatchUp, {
-            foreignKey: {
-              allowNull: false
-            }
-        });
+        // Option.belongsTo(models.MatchUp, {
+        //     foreignKey: {
+        //       allowNull: false
+        //     }
+        // });
     };
 
     return Option;
