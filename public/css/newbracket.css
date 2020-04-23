@@ -21,7 +21,7 @@
 }
 
 body {
-    background: url(https://i0.wp.com/picjumbo.com/wp-content/uploads/simple-classy-silver-watches-close-up_free_stock_photos_picjumbo_DSC02783.jpg?resize=350%2C200&ssl=1);
+    background: url(https://picjumbo.com/wp-content/uploads/laptop-notebook-and-smartphone-with-space-for-text-1080x720.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -31,7 +31,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* form {
-    background-color: blanchedalmond;
-} */
+.container {
+    border-color: black;
+    border-style: none;
+    background-color: rgb(247, 244, 240);
+}

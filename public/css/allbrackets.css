@@ -52,7 +52,7 @@
 } */
 
 body {
-    background: url();
+    background: url(https://picjumbo.com/wp-content/uploads/blank-notebook-in-an-office-space-2210x3315.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -68,4 +68,12 @@ h4 {
 
 nav {
     background-color: rgb(78, 75, 75);
+}
+
+.container {
+    background-color: rgb(236, 235, 232);
+}
+
+th {
+    text-align: center;
 }
