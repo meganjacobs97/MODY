@@ -22,16 +22,16 @@ router.get("/signup",(req,res)=> {
 
 //only logged in users should see the profile page; otherwise, they are redirected to the create acc page 
 router.get("/profile",(req,res)=>{
-  if(req.session.user) {
+  // if(req.session.user) {
       res.render("profile",req.session.user) 
-  } else {
-      res.render("login"); 
-  }
+  // } else {
+  //     res.render("login"); 
+  // }
 })
 
 
 //all tournaments
-router.get("/all",(req,res)=>{
+router.get("/allbrackets",(req,res)=>{
   db.TournamentBracket.findAll({
     raw:true
   }).then(dbBrackets=>{
@@ -43,12 +43,12 @@ router.get("/all",(req,res)=>{
 
 //only logged in users should see the profile page; otherwise, they are redirected to the create acc page 
 //new bracket page 
-router.get("/new",(req,res)=>{
-    if(req.session.user) {
+router.get("/newbracket",(req,res)=>{
+    // if(req.session.user) {
         res.render("newbracket"); 
-    } else {
-        res.render("login"); 
-    }
+    // } else {
+    //     res.render("login"); 
+    // }
 })
 
 //specific bracket 
