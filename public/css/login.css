@@ -12,13 +12,13 @@
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 20px 0 rgba(49, 45, 45, 0.2), 0 5px 5px 0 rgba(61, 54, 54, 0.24);
 }
 
 .form input {
     font-family: "Roboto", sans-serif;
     outline: 0;
-    background: #f2f2f2;
+    background: #353232;
     width: 100%;
     border: 0;
     margin: 0 0 15px;
@@ -31,11 +31,11 @@
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
+    background: rgb(60, 61, 60);
     width: 100%;
     border: 0;
     padding: 15px;
-    color: #FFFFFF;
+    color: rgb(243, 239, 239);
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
@@ -45,7 +45,7 @@
 .form button:hover,
 .form button:active,
 .form button:focus {
-    background: #43A047;
+    background: rgb(166, 168, 166);
 }
 
 .form .message {
@@ -55,7 +55,7 @@
 }
 
 .form .message a {
-    color: #4CAF50;
+    color: rgb(73, 77, 74);
     text-decoration: none;
 }
 
@@ -101,16 +101,15 @@
 }
 
 .container .info span .fa {
-    color: #EF3B3A;
+    color: rgb(105, 102, 102);
 }
 
 body {
-    background: #76b852;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
+    background: url(https://picjumbo.com/wp-content/uploads/smartphone-diary-and-silver-pen-on-black-workspace-desk-1080x720.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
