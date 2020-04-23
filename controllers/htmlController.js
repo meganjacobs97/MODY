@@ -33,9 +33,12 @@ router.get("/profile",(req,res)=>{
 //all tournaments
 router.get("/allbrackets",(req,res)=>{
   db.TournamentBracket.findAll({
-    raw:true,include:[db.MatchUp,db.Option]
+    include:[db.Option]
   }).then(dbBrackets=>{
-    const hbsObj= {brackets:dbBrackets}; 
+    const jsonbrackets = dbBrackets.map(function(bracket) {
+      return bracket.toJSON(); 
+    })
+    const hbsObj= {brackets:jsonbrackets}; 
     console.log(hbsObj);
     res.render("allbrackets",hbsObj)
   }) 
