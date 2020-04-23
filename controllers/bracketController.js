@@ -280,7 +280,7 @@ router.route("/vote/:id").put((req,res)=>{
                         //update user to reflect change 
                         db.User.update({
                             //trun back into a string
-                            options_voted_for: allVotedFor.join(";")
+                            options_voted_for: allVotedFor.join(";") 
                         },{
                             where:{
                                 id: req.session.user.id
