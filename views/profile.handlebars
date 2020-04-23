@@ -1,16 +1,15 @@
 <link rel="stylesheet" href="/css/profile.css" type="text/css" />
 <div class="navbar-fixed">
-        <nav class="nav-extended nav-bar">
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo right">MODY</a>
-                <ul id="nav-mobile" class="left">
-                   
-                    <li><a href="/allbrackets">All brackets</a></li>
-                </ul>
-            </div>
-
-        </nav>
-    </div>
+    <nav class="nav-extended nav-bar">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo right">MODY</a>
+            <ul id="nav-mobile" class="left">
+                
+                <li><a href="/allbrackets">All brackets</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
     <div class="container">
 
         <div class="row">
@@ -22,17 +21,17 @@
                         <p><img id="output" width="200" /></p>
 
                         <div class="card-content">
-                            <p>Name:</p>
+                            <p>Name: {{user.username}}</p>
                             
                         </div>
                     </div>
                     <div class="col s6">
                         <h6>Brackets:</h6>
-                        {{#each BRACKET ATTACHED TO USER}}
-                            <div class="{{ID OF BRACKET}}">
-                                <h6>{{NAME OF BRACKET}}</h6>
-                                <p>{{</p>
+                        {{#each brackets}}
+                            <div class="{{this.id}}">
+                                <h6>{{this.name}}</h6>
                             </div>
+                        {{/each}}
                     </div>
                 </div>
                 <div class="col s6">
@@ -41,10 +40,6 @@
 
                     </div>
                 </div>
-                {{!-- <div class="col s6">
-                    <button class="button" type="button"><a href="FourthPage.html">List Of All Users Brackets</a></button>
-
-                </div> --}}
             </div>
         </div>
     </div>

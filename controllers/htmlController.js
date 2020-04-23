@@ -22,8 +22,26 @@ router.get("/signup",(req,res)=> {
 
 //only logged in users should see the profile page; otherwise, they are redirected to the create acc page 
 router.get("/profile",(req,res)=>{
+  // db.Users.findOne({
+  //   where: {
+  //     username: req.session.use
+  //   }
+  // })
+  console.log("\n\n\n" + req.session.user + "\n\n\n")
+  db.TournamentBracket.findAll({
+    where: {
+      UserId: req.session.user.id
+    }
+  }).then(dbBracket=>{
+    const hbsObj= {
+      user:req.session.user,
+      brackets: dbBracket
+    }; 
+    console.log(hbsObj);
+    res.render("profile",hbsObj)
+  }) 
   // if(req.session.user) {
-      res.render("profile",req.session.user) 
+      //res.render("profile",) 
   // } else {
   //     res.render("login"); 
   // }
