@@ -9,6 +9,7 @@ const sequelize = require("sequelize");
 router.post("/new",(req,res)=> {
     //create the database 
     console.log('body', req.body)
+
     db.TournamentBracket.create({
         name: req.body.name,
         current_round: 1, 
@@ -20,8 +21,7 @@ router.post("/new",(req,res)=> {
         //res.status(200).json(newDbTournamentBracket);
         const tournamentID = newDbTournamentBracket.id;
         //array of options passed from the front end 
-        //TODO - parse correctly; depends on front end 
-        const options = (req.body.options).split(","); 
+        const {options} = req.body; 
         //number of users options - for now, hardcoded as 8 
         
         //create each option 
