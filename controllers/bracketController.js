@@ -13,7 +13,7 @@ router.post("/new",(req,res)=> {
     db.TournamentBracket.create({
         name: req.body.name,
         current_round: 1, 
-        UserId: 1, 
+        UserId: req.session.user.id, 
         is_complete: false,
         winner: null 
 
