@@ -11,20 +11,45 @@ var loadFile = function(event) {
 //frontend javascript to make ajax calls 
 $(function () {
     //new user front end
-    $(".create").on("click", function (event) {
+    $("#create-acc").on("click", function (event) {
         event.preventDefault();
         let newUser = {
-            username: $(".name").val(),
-            password: $(".password").val(),
+            username: $("#create-name").val(),
+            password: $("#create-password").val(),
         }
-
         console.log(newUser)
         $.ajax({
             method: "POST",
             data: newUser,
             url: "/signup"
         }).then(function () {
-            console.log("hello")
+            //after signup, log user in 
+            $.ajax({
+                method: "POST",
+                data: newUser,
+                url: "/login"
+            }).then(function () {
+                //redirect to profile page 
+                location.href = "/profile";
+            })
+            
+        })
+    })
+
+    //login button
+    $("#login-acc").on("click", function (event) {
+        event.preventDefault();
+        let user = {
+            username: $("#login-name").val(),
+            password: $("#login-password").val(),
+        }
+        console.log(user)
+        $.ajax({
+            method: "POST",
+            data: user,
+            url: "/login"
+        }).then(function () {
+            location.href = "/profile";
         })
     })
 
@@ -52,7 +77,7 @@ $(function () {
         $.ajax({
             method: "POST",
             data: newBracket,
-            url: "/new"
+            url: "api/tournamentbracket/new"
         }).then(function () {
             console.log("hello")
         })
@@ -113,4 +138,6 @@ $(function () {
             console.log("hello")
         })
     })
+
+    
 })

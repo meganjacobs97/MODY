@@ -33,7 +33,7 @@ router.get("/profile",(req,res)=>{
 //all tournaments
 router.get("/allbrackets",(req,res)=>{
   db.TournamentBracket.findAll({
-    raw:true
+    raw:true,include:[db.MatchUp,db.Option]
   }).then(dbBrackets=>{
     const hbsObj= {brackets:dbBrackets}; 
     console.log(hbsObj);
@@ -56,7 +56,7 @@ router.get("/brackets/:id",(req,res)=>{
     db.TournamentBracket.findOne({
         where:{
         id:req.params.id
-    }   
+    },include:[db.MatchUp,db.Option]
     }).then(dbBracket=>{
     console.log(dbBracket)
     res.render("bracket",{...dbBracket.dataValues})
