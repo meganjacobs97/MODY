@@ -21,10 +21,19 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each brackets}}
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td class="{{this.id}}">
+                        <p>{{this.name}}</p>
+                    </td>
+                    <td>
+                        {{#each OPTIONS ATTACHED TO BRACKET}}
+                            <p>{{this. OPTION NAME}}</p>
+                        {{/each}}
+                    </td>
                 </tr>
+                {{/each}}
+            </tbody>    
         </table>
 
     </div>
