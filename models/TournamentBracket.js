@@ -20,9 +20,13 @@ module.exports = function(sequelize, DataTypes) {
         });
 
         //brackets have many rounds 
-        TournamentBracket.hasMany(models.MatchUp);
+        TournamentBracket.hasMany(models.MatchUp,{
+            onDelete: "cascade"
+        });
         //and many options 
-        TournamentBracket.hasMany(models.Option); 
+        TournamentBracket.hasMany(models.Option,{
+            onDelete: "cascade"
+        }); 
     };
 
     return TournamentBracket;
