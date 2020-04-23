@@ -37,8 +37,8 @@ router.post("/login",function(req,res) {
                 options_voted_for:[]
             }; 
             //TODO - this should redirect to the profile page 
-            //res.redirect("/profile")
-            res.send("logged in")
+            res.redirect("/login")
+            // res.send("logged in")
         }
         else {
             res.send("not logged in")

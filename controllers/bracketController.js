@@ -8,10 +8,11 @@ const sequelize = require("sequelize");
 // route: /api/tournamentbracket/new
 router.post("/new",(req,res)=> {
     //create the database 
+    console.log('body', req.body)
     db.TournamentBracket.create({
         name: req.body.name,
         current_round: 1, 
-        UserId: req.session.user.id, 
+        UserId: 1, 
         is_complete: false,
         winner: null 
 
