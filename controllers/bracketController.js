@@ -54,7 +54,7 @@ router.post("/new",(req,res)=> {
             })
             
         }
-        res.status(200).send("bracket created");         
+        res.status(200).send(newDbTournamentBracket);         
             
     }).catch(function(err) {
         console.log(err); 
