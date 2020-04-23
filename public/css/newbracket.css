@@ -1,13 +1,37 @@
-.nav-bar, .submit-btn{
-    background-color: rgb(48, 129, 48);
+.nav-bar,
+.submit-btn {
+    background-color: rgb(67, 70, 67);
 }
 
-.nav-row{
+.nav-row {
     margin-bottom: 10vh;
 }
 
-.btn-row{
-    display:flex;
+.btn-row {
+    display: flex;
     justify-content: center;
+    color: white;
+    background-color: rgb(29, 34, 29);
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    border-color: white;
+    border: 1mm;
 }
 
+body {
+    background: url(https://i0.wp.com/picjumbo.com/wp-content/uploads/simple-classy-silver-watches-close-up_free_stock_photos_picjumbo_DSC02783.jpg?resize=350%2C200&ssl=1);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* form {
+    background-color: blanchedalmond;
+} */
