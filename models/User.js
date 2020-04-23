@@ -14,15 +14,7 @@ module.exports = function(sequelize, DataTypes) {
                 len: [8]
             }
         },
-        options_voted_for: {
-            type: DataTypes.INTEGER,
-            get() {
-                return this.getDataValue('options_voted_for').split(';')
-            },
-            set(val) {
-                this.setDataValue('options_voted_for',val.join(';'));
-            }
-        }
+        options_voted_for: DataTypes.STRING
     });
 
     //encrypt password

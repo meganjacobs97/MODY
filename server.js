@@ -54,7 +54,7 @@ app.use("/api/tournamentbracket",bracketRoutes);
 // app.use("/api/reviews",reviewApiRoutes);
 
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
     console.log('App listening on PORT ' + PORT);
     });

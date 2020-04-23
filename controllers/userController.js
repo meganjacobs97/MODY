@@ -33,7 +33,8 @@ router.post("/login",function(req,res) {
         if(bcrypt.compareSync(req.body.password,dbUser.password)) {
             req.session.user = {
                 username:dbUser.username,
-                id: dbUser.id
+                id: dbUser.id,
+                options_voted_for:[]
             }; 
             //TODO - this should redirect to the profile page 
             res.redirect("/login")
