@@ -84,23 +84,19 @@ $(function () {
     })
 
     $(".vote").on("click", function (event) {
-        let votingFor = $(this).data("option")
-        let notVotingFor;
+        let votingFor = $(this).data('for')
+        let notVotingFor = $(this).data('not')
         
 
-        if(votingFor === 1){
-           notVotingFor = 2
-        }else{
-            notVotingFor = 1
-        }
+        
 
         let votes= {
             votingFor: votingFor,
             notVotingFor: notVotingFor
         }
 
-        console.log(votingFor)
-        console.log(notVotingFor)
+        console.log('for', votingFor)
+        console.log('not for', notVotingFor)
 
         $.ajax({
             method: "PUT",
