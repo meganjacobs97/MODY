@@ -78,8 +78,8 @@ $(function () {
             method: "POST",
             data: newBracket,
             url: "api/tournamentbracket/new"
-        }).then(function () {
-            console.log("hello")
+        }).then(function (res) {
+            location.href = "/brackets/" + res.id; 
         })
     })
 
