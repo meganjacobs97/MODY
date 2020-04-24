@@ -107,28 +107,30 @@ $(function () {
     //update round/ advance round
     $(".end-rd").on("click", function (event) {
         let nextRound = $(this).data("rd")
-        let id = $(this).data('id')
+        let id = $(this).data('id'); 
 
         $.ajax({
             method: "PUT",
-            data: nextRound,
-            url: "/nextround/" + id
+            data: {nextRound},
+            url: "/api/tournamentbracket/nextround/" + id
         }).then(function () {
             console.log("hello")
+            location.reload(); 
         })
     })
 
     //close bracket
     $(".close-btn").on("click", function (event) {
-        let finalWinner = $("#winner").text()
+        
         let id = $(this).data("id")
+        
 
         $.ajax({
             method: "PUT",
-            data: finalWinner,
-            url: "/close/" + id
+            url: "/api/tournamentbracket/close/" + id
         }).then(function () {
             console.log("hello")
+            location.reload(); 
         })
     })
     

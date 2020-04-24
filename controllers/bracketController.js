@@ -80,7 +80,9 @@ router.route("/:id").get((req,res)=>{
 //update a bracket to advance to the next round 
 router.route("/nextround/:id").put((req,res)=>{
     //front end will pass a number indicating the next round number 
-    const nextRound = req.body.nextRound; 
+    const nextRound = (req.body.nextRound); 
+    
+    console.log((nextRound)); 
 
     //find query for the tournament, including the matchups 
     db.TournamentBracket.findOne({
