@@ -138,6 +138,5 @@ $(function () {
             console.log("hello")
         })
     })
-
     
 })
