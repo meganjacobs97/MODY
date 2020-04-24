@@ -54,7 +54,7 @@ $(function () {
     })
 
     //new bracket
-    $(".submit-btn").on("click", function (event) {
+    $("#submit-btn").on("click", function (event) {
         event.preventDefault();
         optionsArry = [];
         option_one = $("#option_one").val().trim();
