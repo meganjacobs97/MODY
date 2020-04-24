@@ -85,7 +85,9 @@ $(function () {
 
     $(".vote").on("click", function (event) {
         let votingFor = $(this).data('for')
-        let notVotingFor = $(this).data('not')
+        let notVotingFor = $(this).data('not'); 
+      
+        let id = $(this).data("id")
         
         let votes= {
             votingFor: votingFor,
@@ -98,8 +100,9 @@ $(function () {
         $.ajax({
             method: "PUT",
             data: votes,
-            url: "/vote/" + id
+            url: "/api/tournamentbracket/vote/" + id
         }).then(function () {
+            //location.reload(); 
             console.log("hello")
         })
     })

@@ -9,12 +9,12 @@
             <div class="col s12">
                 <div class="row">
                     <div class="col s6 m12 first">
-                        <p>{{dbBracket.MatchUps.[6].option1}}</p>
-                        <button class="vote" data-for="{{dbBracket.MatchUps.[6].option1}}" data-not="{{dbBracket.MatchUps.[6].option2}}">vote</button>
+                        <p>{{dbBracket.MatchUps.[6].option1}} | Current Votes: {{dbBracket.MatchUps.[6].option1_votes}}</p>
+                        <button class="vote" data-for="{{dbBracket.MatchUps.[6].option1}}" data-not="{{dbBracket.MatchUps.[6].option2}}" data-id="{{dbBracket.id}}">vote</button>
                     </div>
                     <div class="col s6 m12 second">
-                        <p>{{dbBracket.MatchUps.[6].option2}}</p>
-                        <button class="vote" data-for="{{dbBracket.MatchUps.[6].option2}}" data-not="{{dbBracket.MatchUps.[6].option1}}">vote</button>
+                        <p>{{dbBracket.MatchUps.[6].option2}} | Current Votes: {{dbBracket.MatchUps.[6].option2_votes}}</p>
+                        <button class="vote" data-for="{{dbBracket.MatchUps.[6].option2}}" data-not="{{dbBracket.MatchUps.[6].option1}}" data-id="{{dbBracket.id}}">vote</button>
                     </div>
                 </div>
             </div>
