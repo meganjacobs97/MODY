@@ -107,7 +107,7 @@ $(function () {
     //update round/ advance round
     $(".end-rd").on("click", function (event) {
         let nextRound = $(this).data("rd")
-        console.log(nextRound)
+        let id = $(this).data('id')
 
         $.ajax({
             method: "PUT",
@@ -121,7 +121,7 @@ $(function () {
     //close bracket
     $(".close-btn").on("click", function (event) {
         let finalWinner = $("#winner").text()
-        console.log(finalWinner)
+        let id = $(this).data("id")
 
         $.ajax({
             method: "PUT",
