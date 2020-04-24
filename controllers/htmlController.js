@@ -27,6 +27,7 @@ router.get("/profile",(req,res)=>{
   //     username: req.session.use
   //   }
   // })
+
   db.TournamentBracket.findAll({
     where: {
       UserId: req.session.user.id
