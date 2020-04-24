@@ -87,9 +87,6 @@ $(function () {
         let votingFor = $(this).data('for')
         let notVotingFor = $(this).data('not')
         
-
-        
-
         let votes= {
             votingFor: votingFor,
             notVotingFor: notVotingFor

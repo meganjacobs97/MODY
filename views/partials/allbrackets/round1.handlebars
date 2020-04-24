@@ -1,58 +1,64 @@
 <div class="col s12 m3 round">
-        <div class="row rd-row">
-            <h5>Round 1</h5>
-            <div class="end-btn">
-                <button class="btn waves-effect waves-light end-rd" type="submit" name="action">End Round</button>
-            </div>
+    <div class="row rd-row">
+        <h5>Round 1</h5>
+        <div class="end-btn">
+            <button class="btn waves-effect waves-light end-rd" type="submit" name="action">End Round</button>
         </div>
-        <div class="row pairing">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s6 m12 first">
-                        <p>{{dbBracket.MatchUps.[0].option1}}</p>
-                        <button class="vote">vote</button>
-                    </div>
-                    <div class="col s6 m12 second">
-                        <p>{{dbBracket.MatchUps.[0].option2}}</p>
-                        <button class="vote">vote</button>
-                    </div>
+    </div>
+    <div class="row pairing">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s6 m12 first">
+                    <p >{{dbBracket.MatchUps.[0].option1}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[0].option1}}" data-not="{{dbBracket.MatchUps.[0].option2}}">vote</button>
                 </div>
-            </div>
-        </div>
-        <div class="row pairing">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s6 m12 first">
-                        <p>{{dbBracket.MatchUps.[1].option1}}</p>
-                    </div>
-                    <div class="col s6 m12 second">
-                        <p>{{dbBracket.MatchUps.[1].option2}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row pairing">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s6 m12 first">
-                        <p>{{dbBracket.MatchUps.[2].option1}}</p>
-                    </div>
-                    <div class="col s6 m12 second">
-                        <p>{{dbBracket.MatchUps.[2].option2}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row pairing">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s6 m12 first">
-                        <p>{{dbBracket.MatchUps.[3].option1}}</p>
-                    </div>
-                    <div class="col s6 m12 second">
-                        <p>{{dbBracket.MatchUps.[3].option2}}</p>
-                    </div>
+                <div class="col s6 m12 second">
+                    <p>{{dbBracket.MatchUps.[0].option2}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[0].option2}}" data-not="{{dbBracket.MatchUps.[0].option1}}">vote</button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row pairing">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s6 m12 first">
+                    <p>{{dbBracket.MatchUps.[1].option1}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[1].option1}}" data-not="{{dbBracket.MatchUps.[1].option2}}">vote</button>
+                </div>
+                <div class="col s6 m12 second">
+                    <p>{{dbBracket.MatchUps.[1].option2}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[1].option2}}" data-not="{{dbBracket.MatchUps.[1].option1}}">vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pairing">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s6 m12 first">
+                    <p>{{dbBracket.MatchUps.[2].option1}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[2].option1}}" data-not="{{dbBracket.MatchUps.[2].option2}}">vote</button>
+                </div>
+                <div class="col s6 m12 second">
+                    <p>{{dbBracket.MatchUps.[2].option2}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[2].option2}}" data-not="{{dbBracket.MatchUps.[2].option1}}">vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pairing">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s6 m12 first">
+                    <p>{{dbBracket.MatchUps.[3].option1}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[3].option1}}" data-not="{{dbBracket.MatchUps.[3].option2}}">vote</button>
+                </div>
+                <div class="col s6 m12 second">
+                    <p>{{dbBracket.MatchUps.[3].option2}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[3].option2}}" data-not="{{dbBracket.MatchUps.[3].option1}}">vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
