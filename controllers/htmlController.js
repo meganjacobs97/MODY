@@ -22,8 +22,26 @@ router.get("/signup",(req,res)=> {
 
 //only logged in users should see the profile page; otherwise, they are redirected to the create acc page 
 router.get("/profile",(req,res)=>{
+  // db.Users.findOne({
+  //   where: {
+  //     username: req.session.use
+  //   }
+  // })
+
+  db.TournamentBracket.findAll({
+    where: {
+      UserId: req.session.user.id
+    }
+  }).then(dbBracket=>{
+    const hbsObj= {
+      user:req.session.user,
+      brackets: dbBracket
+    }; 
+    console.log(hbsObj);
+    res.render("profile",hbsObj)
+  }) 
   // if(req.session.user) {
-      res.render("profile",req.session.user) 
+      //res.render("profile",) 
   // } else {
   //     res.render("login"); 
   // }
@@ -61,9 +79,33 @@ router.get("/brackets/:id",(req,res)=>{
         id:req.params.id
     },include:[db.MatchUp,db.Option]
     }).then(dbBracket=>{
-    console.log(dbBracket)
-    res.render("bracket",{...dbBracket.dataValues})
-  }).catch(err=> res.json('NO TOURNAMENTS BY THAT ID'))
+    //console.log(dbBracket)
+    let round1 = true;
+    let round2 = false; 
+    let round3 = false; 
+    let winner = false;
+    if(dbBracket.current_round === 0) {
+      winner = true; 
+      round3 = true;
+      round2 = true;
+    }
+    else if(dbBracket.current_round === 3) {
+      round3 = true;
+      round2 = true; 
+    }
+    else if(dbBracket.current_round === 2) {
+      round2 = true; 
+    }
+    
+    const hbsObj = {round1,round2,round3,winner,dbBracket}
+    console.log(hbsObj); 
+    console.log(dbBracket.MatchUps[0].option1); 
+    res.render("bracket",hbsObj); 
+    
+    //res.render("bracket",{...dbBracket.dataValues})
+  }).catch(err=> {
+    console.log(err); 
+    res.json('NO TOURNAMENTS BY THAT ID')})
 })
 
 
