@@ -179,6 +179,7 @@ router.route("/vote/:id").put((req,res)=>{
             [sequelize.Op.or]: [{option1: votingFor,option2:notVotingFor},{option1:notVotingFor,option2:votingFor}]
         }
     }).then(dbFoundMatchUp=>{
+        console.log(dbFoundMatchUp); 
         let option1Votes = dbFoundMatchUp.option1_votes; 
         let option2Votes = dbFoundMatchUp.option2_votes; 
         const option1 = dbFoundMatchUp.option1;
