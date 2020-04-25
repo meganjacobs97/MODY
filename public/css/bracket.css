@@ -1,17 +1,31 @@
-body {
-    background-color: yellowgreen;
+.nav-bar{
+    background-color: black;
 }
 
-h4 {
-    text-align: center;
-    color: white;
+.pairing {
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-th {
-    text-shadow: yellow;
-    color: white;
+.first{
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
 }
 
-td {
-    color: white;
+.second{
+    display: flex;
+    justify-content: space-between;
+    align-items: right;
+    flex-direction: row-reverse;
+    border-left: 2px solid black;
+}
+
+.rnd-row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
