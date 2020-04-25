@@ -73,7 +73,8 @@ router.get("/brackets/:id",(req,res)=>{
         id:req.params.id
     },include:[db.MatchUp,db.Option]
     }).then(dbBracket=>{
-    //console.log(dbBracket)
+    console.log("-------dbbracket\n\n\n\n"); 
+    console.log(dbBracket)
     let round1 = true;
     let round2 = false; 
     let round3 = false; 
@@ -92,8 +93,8 @@ router.get("/brackets/:id",(req,res)=>{
     }
     
     const hbsObj = {round1,round2,round3,winner,dbBracket}
+    console.log("-------\n\n\n\n")
     console.log(hbsObj); 
-    console.log(dbBracket.MatchUps[0].option1); 
     res.render("bracket",hbsObj); 
     
     //res.render("bracket",{...dbBracket.dataValues})

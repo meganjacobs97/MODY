@@ -35,7 +35,6 @@ router.post("/login",function(req,res) {
                 username:dbUser.username,
                 id: dbUser.id
             }; 
-            //TODO - this should redirect to the profile page 
             res.redirect("/profile")
             // res.send("logged in")
         }
