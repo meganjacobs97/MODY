@@ -74,6 +74,12 @@ nav {
     background-color: rgb(236, 235, 232);
 }
 
+.competitors{
+    display:flex;
+    justify-content: space-evenly;
+
+}
+
 th {
     text-align: center;
 }
