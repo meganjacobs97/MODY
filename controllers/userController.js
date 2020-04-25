@@ -33,11 +33,10 @@ router.post("/login",function(req,res) {
         if(bcrypt.compareSync(req.body.password,dbUser.password)) {
             req.session.user = {
                 username:dbUser.username,
-                id: dbUser.id,
-                options_voted_for:[]
+                id: dbUser.id
             }; 
             //TODO - this should redirect to the profile page 
-            res.redirect("/login")
+            res.redirect("/profile")
             // res.send("logged in")
         }
         else {
@@ -48,7 +47,7 @@ router.post("/login",function(req,res) {
 
 router.get("/logout",function(req,res) {
     req.session.destroy(function(err) {
-        res.json("logged out"); 
+        res.redirect("/login"); 
     }); 
 });
 

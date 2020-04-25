@@ -85,54 +85,88 @@ $(function () {
 
     $(".vote").on("click", function (event) {
         let votingFor = $(this).data('for')
-        let notVotingFor = $(this).data('not'); 
-      
-        let id = $(this).data("id")
+
+        const voted = JSON.parse(localStorage.getItem(votingFor)); 
+        if(voted === null || voted === false) {
+            
+            let notVotingFor = $(this).data('not'); 
+            let roundVotingFor = parseInt($(this).data("rd")); 
+            let bracketId = $(this).data("id")
+            let changed = false; 
+
         
-        let votes= {
-            votingFor: votingFor,
-            notVotingFor: notVotingFor
+            const otherVoted = JSON.parse(localStorage.getItem(notVotingFor)); 
+        
+            //if we voted for the other option  
+            if(otherVoted !== null && otherVoted === true) {
+                //change other option to NOT voted for 
+                localStorage.setItem(notVotingFor,JSON.stringify(false));
+                //need to signal to backend that we have changed vote
+                changed = true; 
+            }
+            //change option picked to true 
+            localStorage.setItem(votingFor,JSON.stringify(true))
+
+            let votes= {
+                votingFor: votingFor,
+                notVotingFor: notVotingFor,
+                changed: changed
+            }
+            //first figure out current tournamentround 
+            $.ajax({
+                method: "GET",
+                url: "/api/tournamentbracket/" + bracketId
+            }).then(function (res) {
+                //only update votes if they are voting on correct round 
+                if(res.current_round === roundVotingFor) {
+                    $.ajax({
+                        method: "PUT",
+                        data: votes,
+                        url: "/api/tournamentbracket/vote/" + bracketId
+                    }).then(function () {
+                        location.reload(); 
+                        console.log("hello")
+                    })
+                }
+            })
         }
-
-        console.log('for', votingFor)
-        console.log('not for', notVotingFor)
-
-        $.ajax({
-            method: "PUT",
-            data: votes,
-            url: "/api/tournamentbracket/vote/" + id
-        }).then(function () {
-            //location.reload(); 
-            console.log("hello")
-        })
     })
 
     //update round/ advance round
     $(".end-rd").on("click", function (event) {
         let nextRound = $(this).data("rd")
         let id = $(this).data('id'); 
+        
+        let currentRound = $("#bracket-info").data("round"); 
+        console.log(currentRound); 
 
-        $.ajax({
-            method: "PUT",
-            data: {nextRound},
-            url: "/api/tournamentbracket/nextround/" + id
-        }).then(function () {
-            console.log("hello")
-            location.reload(); 
-        })
+        //only do anything if the current round matches corresponding button
+        if(currentRound === nextRound - 1 && currentRound !== 0) {
+            //clear out local storage so user can vote on next round 
+            //in the future, need to think of a better solution 
+            localStorage.clear(); 
+
+            $.ajax({
+                method: "PUT",
+                data: {nextRound},
+                url: "/api/tournamentbracket/nextround/" + id
+            }).then(function () {
+                console.log("hello")
+                location.reload(); 
+            })
+        }  
     })
 
     //close bracket
     $(".close-btn").on("click", function (event) {
         
         let id = $(this).data("id")
-        
+    
 
         $.ajax({
             method: "PUT",
             url: "/api/tournamentbracket/close/" + id
         }).then(function () {
-            console.log("hello")
             location.reload(); 
         })
     })

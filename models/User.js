@@ -13,8 +13,7 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [8]
             }
-        },
-        options_voted_for: DataTypes.STRING
+        }
     });
 
     //encrypt password

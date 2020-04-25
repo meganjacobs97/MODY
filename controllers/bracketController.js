@@ -82,8 +82,6 @@ router.route("/nextround/:id").put((req,res)=>{
     //front end will pass a number indicating the next round number 
     const nextRound = (req.body.nextRound); 
     
-    console.log((nextRound)); 
-
     //find query for the tournament, including the matchups 
     db.TournamentBracket.findOne({
         where:{
@@ -172,6 +170,8 @@ router.route("/nextround/:id").put((req,res)=>{
 router.route("/vote/:id").put((req,res)=>{
     const votingFor = req.body.votingFor; 
     const notVotingFor = req.body.notVotingFor; 
+    const changed = req.body.changed;
+    
     
     db.MatchUp.findOne({
         where:{
@@ -179,126 +179,36 @@ router.route("/vote/:id").put((req,res)=>{
             [sequelize.Op.or]: [{option1: votingFor,option2:notVotingFor},{option1:notVotingFor,option2:votingFor}]
         }
     }).then(dbFoundMatchUp=>{
-        console.log(dbFoundMatchUp); 
+        
         let option1Votes = dbFoundMatchUp.option1_votes; 
         let option2Votes = dbFoundMatchUp.option2_votes; 
         const option1 = dbFoundMatchUp.option1;
         const option2 = dbFoundMatchUp.option2; 
-        db.User.findOne({
-            where: {
-                id: req.session.user.id
+
+        if(option1 === votingFor) {
+            option1Votes++;
+            if(changed === "true") {
+                option2Votes--; 
+            } 
+        }
+        else {
+            option2Votes++; 
+            if(changed === "true") {
+                option1Votes--; 
             }
-        }).then(dbUser=>{
-            //options_voted_for is stored as a string, convert to array of integers
-            const allVotedFor = []; 
-            if(dbUser.options_voted_for !== null) {
-                let allVotedForString = dbUser.options_voted_for.split(";"); 
-                for(let i = 0; i < allVotedForString.length; i++) {
-                    allVotedFor.push(parseInt(allVotedForString[i]))
-                }
-            }
-            
+        }
         
-            //query to find option ids for voting for and not voting for options 
-            db.Option.findOne({
-                where: {
-                    TournamentBracketId:req.params.id,
-                    name: votingFor 
-                }
-            }).then(dbOptionVotingFor=> {
-                db.Option.findOne({
-                    where: {
-                        TournamentBracketId:req.params.id,
-                        name: notVotingFor
-                    }
-                }).then(dbOptionNotVotingFor=> {
-        
-                    //loop through options 
-                    let votingString = ""; 
-                    let oldIndex = 0; 
-                    
-                
-                    for(let i = 0; i < allVotedFor.length; i++) {
-                        //if user voted for and is trying to vote again 
-                        if(dbOptionVotingFor.id === allVotedFor[i]) {
-
-                            votingString = "votingagain"
-                        }
-                        //if user voted for other option 
-                        else if(dbOptionNotVotingFor.id === allVotedFor[i]) {
-                            votingString = "votingchange"
-                            oldIndex = i;
-                        }
-                        
-                    }
-                    //put outside loop in case user has never voted on anything before 
-                    if(votingString === "") {
-                        votingString = "votingfirst"
-                    }
-                    
-                    //if already voted for, and trying to vote for again, do nothing 
-                    //if already voted for, and trying to vote for the other option 
-                    if(votingString === "votingchange") {
-                        //decrease votes for that option and increase votes for other option 
-                        if(option1 === votingFor) {
-                            option1Votes++; 
-                            option2Votes--; 
-                        }
-                        else {
-                            option2Votes++; 
-                            option1Votes--; 
-                        }
-
-                        //remove old option from array, add new 
-                        allVotedFor.splice(oldIndex,1); 
-                        allVotedFor.push(dbOptionVotingFor.id); 
-
-                    }     
-                    //if not voted for, and trying to vote 
-                    else if(votingString === "votingfirst") {
-                        //increase vote (update query)
-                        if(option1 === votingFor) {
-                            option1Votes++; 
-                        }
-                        else {
-                            option2Votes++;  
-                        }
-                        allVotedFor.push(dbOptionVotingFor.id)
-                    }
-                    
-                    
-                    if(votingString !== "votingagain") {
-                        //update matchup to reflect vote change  
-                        db.MatchUp.update({
-                            option1_votes: option1Votes, 
-                            option2_votes: option2Votes
-                        },{
-                            where:{
-                                TournamentBracketId:req.params.id,
-                                [sequelize.Op.or]: [{option1: votingFor,option2:notVotingFor},{option1:notVotingFor,option2:votingFor}]
-                            }   
-                        }).then(dbMatchUp=>{
-                        
-                        }); 
-                        //update user to reflect change 
-                        db.User.update({
-                            //trun back into a string
-                            options_voted_for: allVotedFor.join(";") 
-                        },{
-                            where:{
-                                id: req.session.user.id
-                            }  
-                        }).then(dbUserRes=> {
-                            res.status(200).send("vote updated"); 
-                        });
-                
-                    } else {
-                        res.send("vote not updated"); 
-                    }
-                    
-                })  
-            }); 
-        })
+        db.MatchUp.update({
+            option1_votes: option1Votes, 
+            option2_votes: option2Votes
+        },{
+            where:{
+                TournamentBracketId:req.params.id,
+                [sequelize.Op.or]: [{option1: votingFor,option2:notVotingFor},{option1:notVotingFor,option2:votingFor}]
+            }   
+        }).then(dbMatchUp=>{  
+            res.send("vote updated"); 
+        });            
     })          
 });
 
@@ -318,6 +228,7 @@ router.route("/close/:id").put((req,res)=>{
         const lastMatchUp = matchUps[matchUps.length - 1]; 
         let roundWinner = null; 
 
+        
         if(lastMatchUp.option1_votes > lastMatchUp.option2_votes) {
             roundWinner = lastMatchUp.option1;
         }
@@ -334,6 +245,9 @@ router.route("/close/:id").put((req,res)=>{
                 roundWinner = lastMatchUp.option2;
             }
         }
+        console.log("\n\n\n\n--------------------------------------------")
+            console.log(typeof roundWinner);
+        console.log("\n\n\n\n--------------------------------------------")
         //update matchup query (add winner)
         db.MatchUp.update({
             winner: roundWinner
@@ -342,6 +256,9 @@ router.route("/close/:id").put((req,res)=>{
                 id: lastMatchUp.id
             }
         }).then(updatedMatchUp=>{
+            console.log("\n\n\n\n--------------------------------------------")
+            console.log(updatedMatchUp);
+            console.log("\n\n\n\n--------------------------------------------")
             //update tournamnet
             db.TournamentBracket.update({
                 current_round: 0, 

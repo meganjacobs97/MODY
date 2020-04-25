@@ -22,29 +22,22 @@ router.get("/signup",(req,res)=> {
 
 //only logged in users should see the profile page; otherwise, they are redirected to the create acc page 
 router.get("/profile",(req,res)=>{
-  // db.Users.findOne({
-  //   where: {
-  //     username: req.session.use
-  //   }
-  // })
-
-  db.TournamentBracket.findAll({
-    where: {
-      UserId: req.session.user.id
-    }
-  }).then(dbBracket=>{
-    const hbsObj= {
-      user:req.session.user,
-      brackets: dbBracket
-    }; 
-    console.log(hbsObj);
-    res.render("profile",hbsObj)
-  }) 
-  // if(req.session.user) {
-      //res.render("profile",) 
-  // } else {
-  //     res.render("login"); 
-  // }
+  if(req.session.user) {
+      db.TournamentBracket.findAll({
+        where: {
+          UserId: req.session.user.id
+        }
+      }).then(dbBracket=>{
+        const hbsObj= {
+          user:req.session.user,
+          brackets: dbBracket
+        }; 
+        console.log(hbsObj);
+        res.render("profile",hbsObj)
+      }) 
+  } else {
+      res.render("login"); 
+  }
 })
 
 
@@ -65,11 +58,12 @@ router.get("/allbrackets",(req,res)=>{
 //only logged in users should see the profile page; otherwise, they are redirected to the create acc page 
 //new bracket page 
 router.get("/newbracket",(req,res)=>{
-    // if(req.session.user) {
+    if(req.session.user) {
         res.render("newbracket"); 
-    // } else {
-    //     res.render("login"); 
-    // }
+    }
+    else {
+      res.render("login"); 
+    }
 })
 
 //specific bracket 
