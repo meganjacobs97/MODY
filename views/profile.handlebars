@@ -17,8 +17,9 @@
                 <div class="row">
                     <div class="col s6" class="card">
                         <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
-                        <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                        <p><img id="output" width="200" /></p>
+                        {{!-- <p><label for="file" style="cursor: pointer;">Upload Image</label></p> --}}
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.uUa6VFXKuplp0-Dv8GOqxwAAAA&pid=Api&P=0&w=300&h=300" alt="default">
+                        {{!-- <p><img id="output" width="200" /></p> --}}
 
                         <div class="card-content">
                             <p>Name: {{user.username}}</p>
