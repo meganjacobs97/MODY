@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
        option2: DataTypes.STRING,
        option1_votes: DataTypes.INTEGER,
        option2_votes: DataTypes.INTEGER,
-       winner: DataTypes.INTEGER
+       winner: DataTypes.STRING
     });
 
     MatchUp.associate = function(models) {
