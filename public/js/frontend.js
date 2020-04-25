@@ -144,7 +144,7 @@ $(function () {
         
         let currentRound = $("#bracket-info").data("round"); 
         
-
+        
         //only do anything if the current round matches corresponding button
         if(currentRound === nextRound - 1 && currentRound !== 0) {
             //clear out local storage so user can vote on next round 
