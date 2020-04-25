@@ -1,4 +1,69 @@
-<div class="col s12 m3 round">
+<div>
+    <div class="rnd-row col s12">
+        <h5>Round 1</h5>
+        <div class="end-btn">
+            <button data-id="{{dbBracket.id}}" data-rd="2" class="btn waves-effect waves-light end-rd" type="submit" name="action">End Round</button>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div class="col s12 pairing">
+                <div class="first col s6">
+                    <p>{{dbBracket.MatchUps.[0].option1}} | Current Votes: {{dbBracket.MatchUps.[0].option1_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[0].option1}}" data-not="{{dbBracket.MatchUps.[0].option2}}">vote</button>
+                </div>
+                <div class="second col s6">
+                    <p>{{dbBracket.MatchUps.[0].option2}} | Current Votes: {{dbBracket.MatchUps.[0].option2_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[0].option2}}" data-not="{{dbBracket.MatchUps.[0].option1}}">vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div class="col s12 pairing">
+                <div class="first col s6">
+                    <p>{{dbBracket.MatchUps.[1].option1}} | Current Votes: {{dbBracket.MatchUps.[1].option1_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[1].option1}}" data-not="{{dbBracket.MatchUps.[1].option2}}">vote</button>
+                </div>
+                <div class="second col s6">
+                    <p>{{dbBracket.MatchUps.[1].option2}} | Current Votes: {{dbBracket.MatchUps.[1].option2_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[1].option2}}" data-not="{{dbBracket.MatchUps.[1].option1}}">vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div class="col s12 pairing">
+                <div class="first col s6">
+                    <p>{{dbBracket.MatchUps.[2].option1}} | Current Votes: {{dbBracket.MatchUps.[2].option1_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[2].option1}}" data-not="{{dbBracket.MatchUps.[2].option2}}">vote</button>
+                </div>
+                <div class="second col s6">
+                    <p>{{dbBracket.MatchUps.[2].option2}} | Current Votes: {{dbBracket.MatchUps.[2].option2_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[2].option2}}" data-not="{{dbBracket.MatchUps.[2].option1}}">vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div class="col s12 pairing">
+                <div class="first col s6">
+                    <p>{{dbBracket.MatchUps.[3].option1}} | Current Votes: {{dbBracket.MatchUps.[3].option1_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[3].option1}}" data-not="{{dbBracket.MatchUps.[3].option2}}">vote</button>
+                </div>
+                <div class="second col s6">
+                    <p>{{dbBracket.MatchUps.[3].option2}} | Current Votes: {{dbBracket.MatchUps.[3].option2_votes}}</p>
+                    <button class="vote" data-for="{{dbBracket.MatchUps.[3].option2}}" data-not="{{dbBracket.MatchUps.[3].option1}}">vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{{!-- <div class="col s12 m3 round">
     <div class="row rd-row">
         <h5>Round 1</h5>
         <div class="end-btn">
@@ -61,4 +126,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
