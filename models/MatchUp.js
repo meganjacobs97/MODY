@@ -10,16 +10,12 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     MatchUp.associate = function(models) {
-        // add associations here
-        // ex:Review.hasMany(models.BlogPost);
-        //each matchup belongs to a tournamnetbracket
         MatchUp.belongsTo(models.TournamentBracket, {
             foreignKey: {
               allowNull: false
             }
         });
-        //each matchup has multiple options (2)
-        // MatchUp.hasMany(models.Option); 
+        
     };
 
 

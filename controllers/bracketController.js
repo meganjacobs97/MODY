@@ -7,9 +7,7 @@ const sequelize = require("sequelize");
 //create new bracket
 // route: /api/tournamentbracket/new
 router.post("/new",(req,res)=> {
-    //create the database 
-    console.log('body', req.body)
-
+    //create the bracket 
     db.TournamentBracket.create({
         name: req.body.name,
         current_round: 1, 
@@ -245,9 +243,6 @@ router.route("/close/:id").put((req,res)=>{
                 roundWinner = lastMatchUp.option2;
             }
         }
-        console.log("\n\n\n\n--------------------------------------------")
-            console.log(typeof roundWinner);
-        console.log("\n\n\n\n--------------------------------------------")
         //update matchup query (add winner)
         db.MatchUp.update({
             winner: roundWinner
@@ -256,9 +251,6 @@ router.route("/close/:id").put((req,res)=>{
                 id: lastMatchUp.id
             }
         }).then(updatedMatchUp=>{
-            console.log("\n\n\n\n--------------------------------------------")
-            console.log(updatedMatchUp);
-            console.log("\n\n\n\n--------------------------------------------")
             //update tournamnet
             db.TournamentBracket.update({
                 current_round: 0, 
