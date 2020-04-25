@@ -32,7 +32,7 @@ router.get("/profile",(req,res)=>{
           user:req.session.user,
           brackets: dbBracket
         }; 
-        console.log(hbsObj);
+        
         res.render("profile",hbsObj)
       }) 
   } else {
@@ -50,7 +50,7 @@ router.get("/allbrackets",(req,res)=>{
       return bracket.toJSON(); 
     })
     const hbsObj= {brackets:jsonbrackets}; 
-    console.log(hbsObj);
+    
     res.render("allbrackets",hbsObj)
   }) 
 })
@@ -73,8 +73,7 @@ router.get("/brackets/:id",(req,res)=>{
         id:req.params.id
     },include:[db.MatchUp,db.Option]
     }).then(dbBracket=>{
-    console.log("-------dbbracket\n\n\n\n"); 
-    console.log(dbBracket)
+    
     let round1 = true;
     let round2 = false; 
     let round3 = false; 
@@ -93,8 +92,6 @@ router.get("/brackets/:id",(req,res)=>{
     }
     
     const hbsObj = {round1,round2,round3,winner,dbBracket}
-    console.log("-------\n\n\n\n")
-    console.log(hbsObj); 
     res.render("bracket",hbsObj); 
     
     //res.render("bracket",{...dbBracket.dataValues})

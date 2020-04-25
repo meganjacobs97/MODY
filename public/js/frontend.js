@@ -17,7 +17,6 @@ $(function () {
             username: $("#create-name").val(),
             password: $("#create-password").val(),
         }
-        console.log(newUser)
         $.ajax({
             method: "POST",
             data: newUser,
@@ -44,7 +43,6 @@ $(function () {
             username: $("#login-name").val(),
             password: $("#login-password").val(),
         }
-        console.log(user)
         $.ajax({
             method: "POST",
             data: user,
@@ -70,8 +68,6 @@ $(function () {
 
         optionsArry.push(option_one, option_two, option_three, option_four, option_five, option_six, option_seven, option_eight);
 
-        console.log(optionsArry)
-
         let newBracket = {
             name: $("#bracket_name").val().trim(),
             options: optionsArry
@@ -87,11 +83,10 @@ $(function () {
 
     $(".vote").on("click", function (event) {
         let votingFor = $(this).data('for')
-        console.log("outside if")
+        
         const voted = JSON.parse(localStorage.getItem(votingFor)); 
-        console.log(voted); 
+        
         if(voted === null || voted === false) {
-            console.log("inside if")
             
             let notVotingFor = $(this).data('not'); 
             let roundVotingFor = parseInt($(this).data("rd")); 
@@ -110,7 +105,7 @@ $(function () {
             }
             //change option picked to true 
             localStorage.setItem(votingFor,JSON.stringify(true))
-            console.log("bracketID " + bracketId)
+            
             let votes= {
                 votingFor: votingFor,
                 notVotingFor: notVotingFor,
@@ -121,7 +116,6 @@ $(function () {
                 method: "GET",
                 url: "/api/tournamentbracket/" + bracketId
             }).then(function (res) {
-                console.log(res); 
                 //only update votes if they are voting on correct round 
                 if(res.current_round === roundVotingFor) {
                     $.ajax({
@@ -130,7 +124,6 @@ $(function () {
                         url: "/api/tournamentbracket/vote/" + bracketId
                     }).then(function () {
                         location.reload(); 
-                        console.log("hello")
                     })
                 }
             })
@@ -144,7 +137,7 @@ $(function () {
         
         let currentRound = $("#bracket-info").data("round"); 
         
-        
+
         //only do anything if the current round matches corresponding button
         if(currentRound === nextRound - 1 && currentRound !== 0) {
             //clear out local storage so user can vote on next round 
@@ -156,7 +149,6 @@ $(function () {
                 data: {nextRound},
                 url: "/api/tournamentbracket/nextround/" + id
             }).then(function () {
-                console.log("hello")
                 location.reload(); 
             })
         }  
@@ -166,7 +158,6 @@ $(function () {
     $(".close-btn").on("click", function (event) {
         
         let id = $(this).data("id")
-    
 
         $.ajax({
             method: "PUT",

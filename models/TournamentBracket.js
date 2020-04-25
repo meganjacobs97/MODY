@@ -10,8 +10,6 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     TournamentBracket.associate = function(models) {
-        // add associations here
-        // ex:Review.hasMany(models.BlogPost);
         //each tournamentbracket belongs to a user 
         TournamentBracket.belongsTo(models.User, {
             foreignKey: {

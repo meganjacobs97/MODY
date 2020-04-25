@@ -17,7 +17,7 @@ app.use(express.json());
 //to remember user session
 app.use(session({
     //CHANGE THIS TO A RANDOM STRING DURING DEVELOPMENT
-    secret: process.env.SESSION_SECRET || "yared",
+    secret: process.env.SESSION_SECRET, //|| "yared",
     store: new SequelizeStore({
         db: db.sequelize
     }),
@@ -51,8 +51,6 @@ app.use(htmlRoutes);
 app.use(userRoutes); 
 
 app.use("/api/tournamentbracket",bracketRoutes);
-// app.use("/api/reviews",reviewApiRoutes);
-
 
 db.sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
